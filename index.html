@@ -30,13 +30,16 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="home.html" class="flex items-center">
-                        <i class="fas fa-leaf text-primary text-2xl mr-2"></i>
-                        <span class="text-xl font-bold text-gray-800 dark:text-white">EcoSight</span>
+                        <div class="flex items-center bg-primary rounded-full p-2 mr-3">
+                            <i class="fas fa-binoculars text-white text-2xl"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-2xl font-bold text-primary dark:text-white">EcoSight</span>
+                            <span class="text-xs text-gray-600 dark:text-gray-400">Wildlife Tracker</span>
+                        </div>
                     </a>
                 </div>
                 <div class="flex gap-4 items-center">
-                    <button onclick="showLoginModal()" class="text-gray-800 dark:text-white hover:text-primary">Login</button>
-                    <button onclick="showSignupModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary">Sign Up</button>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
@@ -47,112 +50,24 @@
     </nav>
 
     <!-- Welcome Hero Section -->
-    <section class="bg-gradient-to-b from-primary to-secondary text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">Welcome to EcoSight ��</h1>
+    <section class="relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0">
+            <img src="https://www.goodnet.org/photos/620x0/36707_hd.jpg" alt="Wildlife Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        </div>
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Welcome to EcoSight</h1>
             <p class="text-xl mb-8">Join our community of wildlife enthusiasts in tracking and protecting local species</p>
             <div class="flex justify-center gap-4">
-                <button onclick="showSignupModal()" class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-gray-100">
-                    Start Contributing
+                <button onclick="showSignupModal()" class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-secondary">
+                    Sign Up
                 </button>
-                <button class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-opacity-20 hover:bg-white">
-                    Learn More
+                <button onclick="showLoginModal()" class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-gray-100">
+                    Login
                 </button>
             </div>
         </div>
     </section>
-
-    <!-- Features Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-primary dark:text-accent">Why Join EcoSight?</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4">🔍</div>
-                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Track Wildlife</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Record and share your wildlife sightings with our community. Help build a comprehensive database of local species.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4">📸</div>
-                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Photo Documentation</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Upload and share photos of your wildlife encounters. Create a visual record of biodiversity.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4">🗺️</div>
-                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Interactive Map</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Explore wildlife sightings in your area through our interactive map interface.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-16 bg-primary text-white">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold mb-2">1,234+</div>
-                    <div class="text-lg">Wildlife Sightings</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold mb-2">500+</div>
-                    <div class="text-lg">Active Contributors</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold mb-2">150+</div>
-                    <div class="text-lg">Species Tracked</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-16 bg-white dark:bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-teal-600 dark:text-teal-400">How It Works</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl mb-4">👤</div>
-                    <h3 class="font-bold mb-2">Create Account</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Sign up and join our community</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4">📱</div>
-                    <h3 class="font-bold mb-2">Record Sighting</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Document your wildlife encounters</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4">🌍</div>
-                    <h3 class="font-bold mb-2">Share Location</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Mark the sighting on our map</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4">🤝</div>
-                    <h3 class="font-bold mb-2">Connect</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Engage with other wildlife enthusiasts</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-16 bg-gradient-to-b from-teal-500 to-teal-600 text-white text-center">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Ready to Start Contributing?</h2>
-            <p class="mb-8">Join our community and help protect wildlife through citizen science</p>
-            <button onclick="showSignupModal()" class="bg-white text-teal-600 px-8 py-3 rounded-full font-bold hover:bg-teal-50">
-                Sign Up Now
-            </button>
-        </div>
-    </section>
-
     <!-- Login Modal -->
     <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
