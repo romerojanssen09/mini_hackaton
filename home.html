@@ -76,8 +76,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative bg-primary text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
+    <header class="relative h-screen flex items-center justify-center text-white" style="background-image: url('https://www.goodnet.org/photos/620x0/36707_hd.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Track Wildlife Sightings</h1>
             <p class="text-xl mb-8">Help protect endangered species by reporting your wildlife sightings</p>
             <a href="sightings.html" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
@@ -110,25 +111,95 @@
         </div>
     </section>
 
-    <!-- Recent Sightings -->
-    <section class="py-16 bg-gray-100 dark:bg-gray-800">
+
+    <!-- Fun Facts Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Recent Sightings</h2>
-            <div id="recentSightings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Sightings will be dynamically added here -->
+            <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">Fun Facts About Wildlife</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('elephant')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Elephant Memory</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Elephants have excellent memories and can remember other elephants and locations for decades. They can also recognize themselves in mirrors!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('hummingbird')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Hummingbird Speed</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Hummingbirds can flap their wings up to 80 times per second and are the only birds that can fly backwards!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('octopus')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Octopus Intelligence</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Octopuses have nine brains - one central brain and eight additional brains in each tentacle. They can also change color to blend with their surroundings!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('spider')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-spider"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Spider Silk</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Spider silk is five times stronger than steel of the same thickness. Some spiders can produce up to seven different types of silk!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('penguin')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Penguin Parenting</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Emperor penguins are the only animals that breed during the Antarctic winter. Males incubate the eggs while females hunt for food!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer" onclick="showFactDetails('dolphin')">
+                    <div class="text-primary text-3xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-kiwi-bird"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Dolphin Sleep</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Dolphins sleep with only half their brain at a time, keeping the other half awake to breathe and watch for predators!</p>
+                    <div class="mt-4 text-primary hover:text-secondary transition-colors duration-300">
+                        <span class="text-sm font-semibold">Learn More <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Fun Facts Section -->
-    <section class="py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Did You Know?</h2>
-            <div id="funFact" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-                <p class="text-gray-600 dark:text-gray-300 text-lg">Loading fun fact...</p>
+    <!-- Fact Details Modal -->
+    <div id="factModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-2xl w-full mx-4 transform transition-all duration-300 scale-0" id="modalContent">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white" id="modalTitle"></h3>
+                <button onclick="closeFactDetails()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div id="modalContentText" class="text-gray-600 dark:text-gray-300"></div>
+                <div class="flex justify-end mt-6">
+                    <button onclick="closeFactDetails()" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary transition duration-300">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
@@ -180,6 +251,166 @@
             }
         });
 
+        // Fact details data
+        const factDetails = {
+            elephant: {
+                title: "Elephant Memory",
+                content: `
+                    <p class="mb-4">Elephants are known for their exceptional memory and intelligence. Here are some fascinating facts:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>They can remember other elephants and locations for decades</li>
+                        <li>They can recognize themselves in mirrors</li>
+                        <li>They mourn their dead and visit their graves</li>
+                        <li>They can distinguish between different human languages</li>
+                        <li>They have the largest brain of any land animal</li>
+                    </ul>
+                `
+            },
+            hummingbird: {
+                title: "Hummingbird Speed",
+                content: `
+                    <p class="mb-4">Hummingbirds are incredible creatures with unique abilities:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Wings can flap up to 80 times per second</li>
+                        <li>Only birds that can fly backwards</li>
+                        <li>Heart rate can reach 1,260 beats per minute</li>
+                        <li>Can hover in place for extended periods</li>
+                        <li>Have the highest metabolism of any animal</li>
+                    </ul>
+                `
+            },
+            octopus: {
+                title: "Octopus Intelligence",
+                content: `
+                    <p class="mb-4">Octopuses are among the most intelligent invertebrates:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Have nine brains - one central and eight in tentacles</li>
+                        <li>Can change color and texture instantly</li>
+                        <li>Can solve complex puzzles</li>
+                        <li>Have been observed using tools</li>
+                        <li>Can escape through tiny openings</li>
+                    </ul>
+                `
+            },
+            spider: {
+                title: "Spider Silk",
+                content: `
+                    <p class="mb-4">Spider silk is one of nature's most remarkable materials:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Five times stronger than steel</li>
+                        <li>Can stretch up to 40% of its length</li>
+                        <li>Some spiders produce 7 different types of silk</li>
+                        <li>Used for webs, egg sacs, and safety lines</li>
+                        <li>Scientists are trying to replicate it for human use</li>
+                    </ul>
+                `
+            },
+            penguin: {
+                title: "Penguin Parenting",
+                content: `
+                    <p class="mb-4">Emperor penguins have unique parenting behaviors:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Breed during Antarctic winter</li>
+                        <li>Males incubate eggs while females hunt</li>
+                        <li>Can fast for up to 4 months</li>
+                        <li>Form large colonies for warmth</li>
+                        <li>Recognize their chicks by sound</li>
+                    </ul>
+                `
+            },
+            dolphin: {
+                title: "Dolphin Sleep",
+                content: `
+                    <p class="mb-4">Dolphins have a unique sleeping pattern:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Sleep with half their brain at a time</li>
+                        <li>Keep one eye open while sleeping</li>
+                        <li>Must surface to breathe every few minutes</li>
+                        <li>Can swim while sleeping</li>
+                        <li>Sleep about 8 hours per day</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Function to show fact details
+        function showFactDetails(factId) {
+            const modal = document.getElementById('factModal');
+            const modalContent = document.getElementById('modalContent');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContentText = document.getElementById('modalContentText');
+
+            modalTitle.textContent = factDetails[factId].title;
+            modalContentText.innerHTML = factDetails[factId].content;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-0');
+            }, 10);
+        }
+
+        // Function to close fact details
+        function closeFactDetails() {
+            const modal = document.getElementById('factModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.classList.add('scale-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('factModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeFactDetails();
+            }
+        });
+
+        // Recent Sightings Section
+        function loadRecentSightings() {
+            const recentSightingsContainer = document.getElementById('recentSightings');
+            const sightings = JSON.parse(localStorage.getItem('sightings') || '[]');
+            
+            // Sort sightings by date (newest first) and take the latest 6
+            const recentSightings = sightings
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 6);
+
+            if (recentSightings.length === 0) {
+                recentSightingsContainer.innerHTML = `
+                    <div class="col-span-full text-center text-gray-600 dark:text-gray-400">
+                        <p>No recent sightings reported yet.</p>
+                        <a href="sightings.html" class="text-primary hover:text-secondary mt-2 inline-block">
+                            Be the first to report a sighting!
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            recentSightingsContainer.innerHTML = recentSightings.map(sighting => `
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <img src="${sighting.photo}" alt="${sighting.species}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${sighting.species}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">${sighting.location}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">${new Date(sighting.date).toLocaleDateString()}</p>
+                        <div class="mt-4">
+                            <a href="my-sightings.html" class="text-primary hover:text-secondary text-sm font-semibold">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load recent sightings when the page loads
+        document.addEventListener('DOMContentLoaded', loadRecentSightings);
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -187,25 +418,6 @@
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Fun facts
-        const funFacts = [
-            "Elephants are the only mammals that can't jump!",
-            "A group of flamingos is called a flamboyance.",
-            "Sloths can hold their breath for up to 40 minutes underwater.",
-            "Pandas spend 12 hours a day eating bamboo.",
-            "A newborn kangaroo is about the size of a lima bean."
-        ];
-
-        function updateFunFact() {
-            const factElement = document.getElementById('funFact');
-            const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
-            factElement.innerHTML = `<p class="text-gray-600 dark:text-gray-300 text-lg">${randomFact}</p>`;
-        }
-
-        // Update fun fact every 10 seconds
-        updateFunFact();
-        setInterval(updateFunFact, 10000);
     </script>
 </body>
 </html>
