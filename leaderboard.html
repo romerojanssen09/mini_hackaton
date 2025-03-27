@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@
         }
     </script>
 </head>
+
 <body class="bg-gray-50 dark:bg-gray-900">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg">
@@ -32,16 +34,48 @@
                         <span class="text-xl font-bold text-gray-800 dark:text-white">EcoSight</span>
                     </a>
                 </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-gray-800 dark:text-white hover:text-primary">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="home.html" class="text-gray-800 dark:text-white hover:text-primary">Home</a>
+                    <a href="home.html" class="text-primary">Home</a>
                     <a href="species.html" class="text-gray-800 dark:text-white hover:text-primary">Species</a>
-                    <a href="sightings.html" class="text-gray-800 dark:text-white hover:text-primary">Report Sightings</a>
-                    <a href="my-sightings.html" class="text-gray-800 dark:text-white hover:text-primary">My Sightings</a>
-                    <a href="leaderboard.html" class="text-primary">Leaderboard</a>
+                    <a href="sightings.html" class="text-gray-800 dark:text-white hover:text-primary">Report
+                        Sightings</a>
+                    <a href="my-sightings.html" class="text-gray-800 dark:text-white hover:text-primary">My
+                        Sightings</a>
+                    <a href="leaderboard.html" class="text-gray-800 dark:text-white hover:text-primary">Leaderboard</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
+                    <a href="#" class="text-gray-800 dark:text-white hover:text-primary">
+                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="home.html" class="block text-primary py-2">Home</a>
+                    <a href="species.html"
+                        class="block text-gray-800 dark:text-white hover:text-primary py-2">Species</a>
+                    <a href="sightings.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">Report
+                        Sightings</a>
+                    <a href="my-sightings.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">My
+                        Sightings</a>
+                    <a href="leaderboard.html"
+                        class="block text-gray-800 dark:text-white hover:text-primary py-2">Leaderboard</a>
+                    <a href="index.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">
+                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                    </a>
                 </div>
             </div>
         </div>
@@ -60,8 +94,12 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2">
                 <div class="flex space-x-2">
                     <button class="px-4 py-2 rounded-md bg-primary text-white">All Time</button>
-                    <button class="px-4 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">This Month</button>
-                    <button class="px-4 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">This Week</button>
+                    <button
+                        class="px-4 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">This
+                        Month</button>
+                    <button
+                        class="px-4 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">This
+                        Week</button>
                 </div>
             </div>
         </div>
@@ -71,11 +109,21 @@
             <table class="w-full">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rank</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">User</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Points</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Sightings</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Badges</th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            Rank</th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            User</th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            Points</th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            Sightings</th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            Badges</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -90,7 +138,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/random/100x100/?portrait" alt="">
+                                    <img class="h-10 w-10 rounded-full"
+                                        src="https://source.unsplash.com/random/100x100/?portrait" alt="">
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900 dark:text-white">Sarah Johnson</div>
@@ -118,7 +167,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/random/100x100/?person" alt="">
+                                    <img class="h-10 w-10 rounded-full"
+                                        src="https://source.unsplash.com/random/100x100/?person" alt="">
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900 dark:text-white">Michael Chen</div>
@@ -145,7 +195,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://source.unsplash.com/random/100x100/?face" alt="">
+                                    <img class="h-10 w-10 rounded-full"
+                                        src="https://source.unsplash.com/random/100x100/?face" alt="">
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900 dark:text-white">Emma Davis</div>
@@ -173,21 +224,24 @@
                     <i class="fas fa-camera text-primary text-2xl mr-3 mt-1"></i>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Report Sightings</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Earn 10 points for each verified wildlife sighting</p>
+                        <p class="text-gray-600 dark:text-gray-300">Earn 10 points for each verified wildlife sighting
+                        </p>
                     </div>
                 </div>
                 <div class="flex items-start">
                     <i class="fas fa-check-circle text-primary text-2xl mr-3 mt-1"></i>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Quality Reports</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Get bonus points for detailed descriptions and photos</p>
+                        <p class="text-gray-600 dark:text-gray-300">Get bonus points for detailed descriptions and
+                            photos</p>
                     </div>
                 </div>
                 <div class="flex items-start">
                     <i class="fas fa-users text-primary text-2xl mr-3 mt-1"></i>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Community Engagement</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Earn points by helping other users identify species</p>
+                        <p class="text-gray-600 dark:text-gray-300">Earn points by helping other users identify species
+                        </p>
                     </div>
                 </div>
             </div>
@@ -370,14 +424,14 @@
 
         // Function to create leaderboard row HTML
         function createLeaderboardRow(user, isTopThree = false) {
-            const rowClass = isTopThree ? 
-                (user.rank === 1 ? 'bg-yellow-50 dark:bg-yellow-900/20' : 
-                 user.rank === 2 ? 'bg-gray-50 dark:bg-gray-800' : 
-                 'bg-amber-50 dark:bg-amber-900/20') : '';
-            
+            const rowClass = isTopThree ?
+                (user.rank === 1 ? 'bg-yellow-50 dark:bg-yellow-900/20' :
+                    user.rank === 2 ? 'bg-gray-50 dark:bg-gray-800' :
+                        'bg-amber-50 dark:bg-amber-900/20') : '';
+
             const rankIcon = user.rank === 1 ? 'fa-crown text-yellow-500' :
-                           user.rank === 2 ? 'fa-medal text-gray-400' :
-                           user.rank === 3 ? 'fa-medal text-amber-600' : 'fa-medal text-gray-400';
+                user.rank === 2 ? 'fa-medal text-gray-400' :
+                    user.rank === 3 ? 'fa-medal text-amber-600' : 'fa-medal text-gray-400';
 
             return `
                 <tr class="${rowClass}">
@@ -435,6 +489,15 @@
 
         // Initial render
         updateLeaderboard('all-time');
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 </body>
-</html> 
+
+</html>

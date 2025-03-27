@@ -34,20 +34,46 @@
                         <span class="text-xl font-bold text-gray-800 dark:text-white">EcoSight</span>
                     </a>
                 </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-gray-800 dark:text-white hover:text-primary">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="home.html" class="text-gray-800 dark:text-white hover:text-primary">Home</a>
+                    <a href="home.html" class="text-primary">Home</a>
                     <a href="species.html" class="text-gray-800 dark:text-white hover:text-primary">Species</a>
                     <a href="sightings.html" class="text-gray-800 dark:text-white hover:text-primary">Report Sightings</a>
-                    <a href="my-sightings.html" class="text-primary">My Sightings</a>
+                    <a href="my-sightings.html" class="text-gray-800 dark:text-white hover:text-primary">My Sightings</a>
                     <a href="leaderboard.html" class="text-gray-800 dark:text-white hover:text-primary">Leaderboard</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
+                    <a href="index.html" class="text-gray-800 dark:text-white hover:text-primary">
+                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="home.html" class="block text-primary py-2">Home</a>
+                    <a href="species.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">Species</a>
+                    <a href="sightings.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">Report Sightings</a>
+                    <a href="my-sightings.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">My Sightings</a>
+                    <a href="leaderboard.html" class="block text-gray-800 dark:text-white hover:text-primary py-2">Leaderboard</a>
+                    <a href="#" class="block text-gray-800 dark:text-white hover:text-primary py-2">
+                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                    </a>
                 </div>
             </div>
         </div>
-    </nav>
+    </nav>v
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 py-8">
@@ -229,6 +255,14 @@
 
         // Initial load
         loadSightings();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html> 
