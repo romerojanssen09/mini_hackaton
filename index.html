@@ -24,6 +24,10 @@
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- First, add this toast container div right after the body tag opens -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[150] flex flex-col gap-2">
+    </div>
+
     <!-- Navigation -->
     <!-- <nav class="bg-white dark:bg-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4">
@@ -184,6 +188,42 @@
             showLoginModal();
         }
 
+        // Add this toast functionality
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            
+            const toast = document.createElement('div');
+            toast.className = `transform transition-all duration-300 ease-in-out translate-y-[-100%] opacity-0
+                flex items-center justify-between p-4 mb-3 min-w-[300px] rounded-lg shadow-lg 
+                ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+            
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-times-circle'} mr-2"></i>
+                    <p>${message}</p>
+                </div>
+                <button onclick="this.parentElement.remove()" class="ml-4 hover:opacity-80">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-[-100%]', 'opacity-0');
+            }, 100);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-[-100%]', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Update the form handlers to use toast
         document.getElementById("signupForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -201,28 +241,9 @@
             // Clear form fields
             this.reset();
 
-            // Remove any existing success messages
-            const existingMessages = document.querySelectorAll('.success-message');
-            existingMessages.forEach(msg => msg.remove());
-
-            // Display success message
-            const successMessage = document.createElement("p");
-            successMessage.textContent = "Account created successfully!";
-            successMessage.classList.add("text-center", "mt-4", "text-sm", "text-green-600", "success-message");
-            document.querySelector('nav').insertAdjacentElement('afterend', successMessage);
-
-            // Remove message after 3 seconds
-            setTimeout(() => successMessage.remove(), 3000);
+            // Show success toast
+            showToast("Account created successfully!", "success");
         });
-
-        function saveSignupForm(data) {
-            localStorage.setItem("userData", JSON.stringify(data));
-        }
-
-        function getSignupForm() {
-            let data = localStorage.getItem("userData");
-            return data ? JSON.parse(data) : null;
-        }
 
         document.getElementById("loginForm").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -240,32 +261,27 @@
                 // Clear form fields
                 this.reset();
 
-                // Remove any existing success messages
-                const existingMessages = document.querySelectorAll('.success-message');
-                existingMessages.forEach(msg => msg.remove());
+                // Show success toast
+                showToast("Login successful!", "success");
 
-                // Display success message
-                const successMessage = document.createElement("p");
-                successMessage.textContent = "Login successful!";
-                successMessage.classList.add("text-center", "mt-4", "text-sm", "text-green-600", "success-message");
-                document.querySelector('nav').insertAdjacentElement('afterend', successMessage);
-
-                // Remove message after 3 seconds
+                // Redirect after delay
                 setTimeout(() => {
-                    successMessage.remove();
                     window.location.href = "home.html";
-                }, 2000);
+                }, 500);
             } else {
-                // Display error message
-                const errorMessage = document.createElement("p");
-                errorMessage.textContent = "Invalid email or password";
-                errorMessage.classList.add("text-center", "mt-4", "text-sm", "text-red-600", "success-message");
-                document.querySelector('nav').insertAdjacentElement('afterend', errorMessage);
-                
-                // Remove error message after 3 seconds
-                setTimeout(() => errorMessage.remove(), 1000);
+                // Show error toast
+                showToast("Invalid email or password", "error");
             }
         });
+
+        function saveSignupForm(data) {
+            localStorage.setItem("userData", JSON.stringify(data));
+        }
+
+        function getSignupForm() {
+            let data = localStorage.getItem("userData");
+            return data ? JSON.parse(data) : null;
+        }
 
         // Add dark mode toggle functionality
         // const darkModeToggle = document.getElementById('darkModeToggle');
