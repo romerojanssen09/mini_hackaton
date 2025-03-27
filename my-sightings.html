@@ -91,15 +91,20 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 py-8">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
-            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">My Sightings</h1>
-            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">My Sightings</h1>
+        
+        <!-- Responsive search and filter controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+            <div class="w-full">
                 <input type="text" 
                     id="searchInput" 
                     placeholder="Search sightings..." 
-                    class="w-full sm:w-64 px-4 py-2 text-base border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                    class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+            </div>
+            <div class="w-full">
                 <select id="sortSelect" 
-                    class="w-full sm:w-48 px-4 py-2 text-base border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                    class="w-full h-12 px-4 text-base border border-gray-300 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-no-repeat bg-right pr-10"
+                    style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\" fill=\"%236B7280\"/></svg>'); background-position: right 0.75rem center; background-size: 1.5em 1.5em;">
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
                     <option value="species">Species Name</option>
@@ -108,7 +113,7 @@
         </div>
 
         <!-- Sightings Grid -->
-        <div id="sightingsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div id="sightingsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Sightings will be loaded here -->
         </div>
     </div>
