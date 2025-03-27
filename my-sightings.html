@@ -91,13 +91,15 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">My Sightings</h1>
-            <div class="flex space-x-4">
-                <input type="text" id="searchInput" placeholder="Search sightings..."
-                    class="px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <select id="sortSelect"
-                    class="px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">My Sightings</h1>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                <input type="text" 
+                    id="searchInput" 
+                    placeholder="Search sightings..." 
+                    class="w-full sm:w-64 px-4 py-2 text-base border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                <select id="sortSelect" 
+                    class="w-full sm:w-48 px-4 py-2 text-base border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
                     <option value="species">Species Name</option>
@@ -106,7 +108,7 @@
         </div>
 
         <!-- Sightings Grid -->
-        <div id="sightingsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="sightingsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <!-- Sightings will be loaded here -->
         </div>
     </div>
@@ -170,29 +172,43 @@
                 return '';
             }
 
-            console.log('Creating card for sighting:', sighting); // Debug log
             return `
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                    <img src="${sighting.photo || 'https://via.placeholder.com/400x300?text=No+Image'}" alt="${sighting.speciesName}" class="w-full h-48 object-cover">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="${sighting.photo || 'https://via.placeholder.com/400x300?text=No+Image'}" 
+                            alt="${sighting.speciesName}" 
+                            class="w-full h-48 object-cover">
+                    </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">${sighting.speciesName || 'Unknown Species'}</h3>
-                        <div class="flex items-center mb-2">
-                            <span class="px-2 py-1 text-xs rounded-full ${sighting.status === 'critically-endangered' ? 'bg-red-100 text-red-800' :
-                    sighting.status === 'endangered' ? 'bg-orange-100 text-orange-800' :
-                        'bg-yellow-100 text-yellow-800'
-                }">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-1">${sighting.speciesName || 'Unknown Species'}</h3>
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs rounded-full ${
+                                sighting.status === 'critically-endangered' ? 'bg-red-100 text-red-800' :
+                                sighting.status === 'endangered' ? 'bg-orange-100 text-orange-800' :
+                                'bg-yellow-100 text-yellow-800'
+                            }">
                                 ${(sighting.status || 'vulnerable').split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                             </span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                ${new Date(sighting.date).toLocaleDateString()}
+                            </span>
                         </div>
-                        <div class="flex justify-between items-center mt-4">
-                            <button onclick="viewFullDetails('${sighting.timestamp}')" class="text-primary hover:text-secondary">
-                                <i class="fas fa-eye"></i> View Details
+                        <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-4">
+                            ${sighting.description}
+                        </p>
+                        <div class="flex justify-between items-center mt-auto">
+                            <button onclick="viewFullDetails('${sighting.timestamp}')" 
+                                class="text-primary hover:text-secondary transition-colors duration-200">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span class="text-sm">View Details</span>
                             </button>
-                            <div class="flex space-x-2">
-                                <button onclick="editSighting('${sighting.timestamp}')" class="text-blue-500 hover:text-blue-600">
+                            <div class="flex space-x-3">
+                                <button onclick="editSighting('${sighting.timestamp}')" 
+                                    class="text-blue-500 hover:text-blue-600 transition-colors duration-200">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button onclick="deleteSighting('${sighting.timestamp}')" class="text-red-500 hover:text-red-600">
+                                <button onclick="deleteSighting('${sighting.timestamp}')" 
+                                    class="text-red-500 hover:text-red-600 transition-colors duration-200">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -457,6 +473,9 @@
                 if (!filteredSightings || filteredSightings.length === 0) {
                     grid.innerHTML = `
                         <div class="col-span-full text-center py-8">
+                            <div class="flex flex-col items-center space-y-2">
+                                <i class="fas fa-search text-4xl text-gray-400 dark:text-gray-600 mb-2"></i>
+                                <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400">No sightings found</p>
                             <p class="text-gray-600 dark:text-gray-400">No sightings found. Submit your first sighting!</p>
                         </div>
                     `;
