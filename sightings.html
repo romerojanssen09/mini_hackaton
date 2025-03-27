@@ -92,7 +92,7 @@
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Species Name</label>
                         <input type="text" id="speciesName" required class="w-full px-3 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
-                    <div>
+                    <!-- <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Conservation Status</label>
                         <select id="status" required class="w-full px-3 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                             <option value="">Select Status</option>
@@ -100,7 +100,7 @@
                             <option value="endangered">Endangered</option>
                             <option value="vulnerable">Vulnerable</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Location</label>
                         <div class="flex space-x-2">
@@ -362,7 +362,7 @@
             try {
                 const formData = {
                     speciesName: document.getElementById('speciesName').value,
-                    status: document.getElementById('status').value,
+                    // status: document.getElementById('status').value,
                     location: selectedLocation,
                     date: document.getElementById('date').value,
                     description: document.getElementById('description').value,
