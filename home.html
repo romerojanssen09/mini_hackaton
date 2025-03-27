@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSight - Wildlife Sightings Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#1B5E20',
+                        accent: '#81C784',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="home.html" class="flex items-center">
+                        <i class="fas fa-leaf text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800 dark:text-white">EcoSight</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="home.html" class="text-primary">Home</a>
+                    <a href="species.html" class="text-gray-800 dark:text-white hover:text-primary">Species</a>
+                    <a href="sightings.html" class="text-gray-800 dark:text-white hover:text-primary">Report Sightings</a>
+                    <a href="my-sightings.html" class="text-gray-800 dark:text-white hover:text-primary">My Sightings</a>
+                    <a href="leaderboard.html" class="text-gray-800 dark:text-white hover:text-primary">Leaderboard</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-primary text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Track Wildlife Sightings</h1>
+            <p class="text-xl mb-8">Help protect endangered species by reporting your wildlife sightings</p>
+            <a href="sightings.html" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                Report a Sighting
+            </a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <i class="fas fa-camera text-primary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Report Sightings</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Upload photos and details about wildlife you've spotted</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <i class="fas fa-map-marker-alt text-primary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Track Locations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">View sightings on our interactive map</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <i class="fas fa-trophy text-primary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Earn Points</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Get rewarded for contributing to wildlife conservation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Sightings -->
+    <section class="py-16 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Recent Sightings</h2>
+            <div id="recentSightings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Sightings will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Did You Know?</h2>
+            <div id="funFact" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <p class="text-gray-600 dark:text-gray-300 text-lg">Loading fun fact...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">EcoSight</h3>
+                    <p class="text-gray-400">Protecting wildlife through community engagement</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="sightings.html" class="text-gray-400 hover:text-white">Report Sighting</a></li>
+                        <li><a href="species.html" class="text-gray-400 hover:text-white">Species Database</a></li>
+                        <li><a href="leaderboard.html" class="text-gray-400 hover:text-white">Leaderboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 EcoSight. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Fun facts
+        const funFacts = [
+            "Elephants are the only mammals that can't jump!",
+            "A group of flamingos is called a flamboyance.",
+            "Sloths can hold their breath for up to 40 minutes underwater.",
+            "Pandas spend 12 hours a day eating bamboo.",
+            "A newborn kangaroo is about the size of a lima bean."
+        ];
+
+        function updateFunFact() {
+            const factElement = document.getElementById('funFact');
+            const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+            factElement.innerHTML = `<p class="text-gray-600 dark:text-gray-300 text-lg">${randomFact}</p>`;
+        }
+
+        // Update fun fact every 10 seconds
+        updateFunFact();
+        setInterval(updateFunFact, 10000);
+    </script>
+</body>
+</html>
