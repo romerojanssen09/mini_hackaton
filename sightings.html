@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -300,46 +301,118 @@
             }
         });
 
-        // Handle form submission
-        document.getElementById('sightingForm').addEventListener('submit', (e) => {
+        // Add this toast function
+        function showSuccessToast(message) {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-[1100] 
+                transform transition-all duration-300 ease-in-out translate-y-[-100%] opacity-0`;
+            
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-[-100%]', 'opacity-0');
+            }, 100);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-[-100%]', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Update the form submission handler
+        document.getElementById('sightingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             if (!selectedLocation) {
-                alert('Please select a location on the map first!');
+                Swal.fire({
+                    title: 'Location Required',
+                    text: 'Please select a location on the map first!',
+                    icon: 'warning',
+                    confirmButtonColor: '#2E7D32',
+                    background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+                    color: document.documentElement.classList.contains('dark') ? '#ffffff' : '#000000'
+                });
                 return;
             }
 
-            const formData = {
-                speciesName: document.getElementById('speciesName').value,
-                status: document.getElementById('status').value,
-                location: selectedLocation,
-                date: document.getElementById('date').value,
-                description: document.getElementById('description').value,
-                photo: document.getElementById('photoPreview').src,
-                timestamp: new Date().toISOString()
-            };
+            // Show loading state
+            Swal.fire({
+                title: 'Submitting Sighting',
+                text: 'Please wait...',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                },
+                background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+                color: document.documentElement.classList.contains('dark') ? '#ffffff' : '#000000'
+            });
 
-            // Get existing sightings from localStorage
-            let sightings = JSON.parse(localStorage.getItem('sightings') || '[]');
-            
-            // Add new sighting
-            sightings.push(formData);
-            
-            // Save back to localStorage
-            localStorage.setItem('sightings', JSON.stringify(sightings));
+            try {
+                const formData = {
+                    speciesName: document.getElementById('speciesName').value,
+                    status: document.getElementById('status').value,
+                    location: selectedLocation,
+                    date: document.getElementById('date').value,
+                    description: document.getElementById('description').value,
+                    photo: document.getElementById('photoPreview').src,
+                    timestamp: new Date().toISOString()
+                };
 
-            // Show success message
-            alert('Sighting submitted successfully!');
+                // Get existing sightings from localStorage
+                let sightings = JSON.parse(localStorage.getItem('sightings') || '[]');
+                
+                // Add new sighting
+                sightings.push(formData);
+                
+                // Save back to localStorage
+                localStorage.setItem('sightings', JSON.stringify(sightings));
 
-            // Reset form
-            e.target.reset();
-            document.getElementById('photoPreview').classList.add('hidden');
-            if (marker) {
-                map.removeLayer(marker);
-                marker = null;
+                // Close loading dialog
+                await Swal.fire({
+                    title: 'Success!',
+                    text: 'Your sighting has been submitted successfully',
+                    icon: 'success',
+                    confirmButtonColor: '#2E7D32',
+                    background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+                    color: document.documentElement.classList.contains('dark') ? '#ffffff' : '#000000'
+                });
+
+                // Show toast notification
+                showSuccessToast('Sighting submitted successfully!');
+
+                // Reset form
+                e.target.reset();
+                document.getElementById('photoPreview').classList.add('hidden');
+                if (marker) {
+                    map.removeLayer(marker);
+                    marker = null;
+                }
+                selectedLocation = null;
+                document.getElementById('locationInput').value = '';
+
+            } catch (error) {
+                console.error('Error submitting sighting:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an error submitting your sighting. Please try again.',
+                    icon: 'error',
+                    confirmButtonColor: '#2E7D32',
+                    background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+                    color: document.documentElement.classList.contains('dark') ? '#ffffff' : '#000000'
+                });
             }
-            selectedLocation = null;
-            document.getElementById('locationInput').value = '';
         });
 
         // Check for species parameter in URL
